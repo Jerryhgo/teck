@@ -49,13 +49,13 @@ https://github.com/rasbt/LLMs-from-scratch
 
 ### speech to text:
 https://github.com/openai/whisper
-1.install whisper
-2.install ffmpeg
-3.install pytube(pytubefix)
+1. install whisper
+2. install ffmpeg
+3. install pytube(pytubefix)  
 https://github.com/pytube/pytube
-4.extract audio:
+4. extract audio:  
 $ pytube https://youtube.com/watch?v=2lAe1cqCOXo
-5.speech to text:
+5. speech to text:  
 whisper japanese.wav --model medium --language Japanese --task translate
 
 
@@ -63,11 +63,11 @@ whisper japanese.wav --model medium --language Japanese --task translate
 https://github.com/assafelovic/gpt-researcher
 
 ### RAG:
-1.rubbish in, rubbish out, vision model to parse graph and table
+1. rubbish in, rubbish out, vision model to parse graph and table  
 https://github.com/landing-ai/agentic-doc
-2.hybrid approach adding rerank would be more accurate
+2. hybrid approach adding rerank would be more accurate  
 https://github.com/infiniflow/ragflow
-3.for text based documents, propose to use GraphRag:
+3. for text based documents, propose to use GraphRag:  
 https://github.com/HKUDS/LightRAG
 
 ### Video generation:
