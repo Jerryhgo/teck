@@ -29,6 +29,13 @@ https://github.com/binarywang/WxJava
 Use LLM to fetch hot articles of one topic and generate new articles by LLM
 https://github.com/FreshRSS/FreshRSS
 
+### UI
+https://github.com/ElemeFE/element  
+https://github.com/twbs/bootstrap
+
+### The open-source CapCut alternative
+https://github.com/OpenCut-app/OpenCut
+
 
 ## LLM 
 ***
@@ -74,8 +81,15 @@ It's not sophisticated to generate video:
 https://github.com/comfyanonymous/ComfyUI
 
 ### agents collection:
-https://github.com/wshobson/agents
+https://github.com/wshobson/agents  
 https://github.com/AntonOsika/gpt-engineer
+
+### n8n
+https://github.com/n8n-io/n8n
+
+### ollama
+run llm locally  
+https://github.com/ollama/ollama
 
 
 ## BlockChain
