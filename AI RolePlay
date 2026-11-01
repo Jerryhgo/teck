@@ -1,5 +1,9 @@
-AI RolePlay 的流程： ASR（观众语音识别）-》LLM（理解，回复）-》TTS（语音合成，有情绪的回复）
+AI RolePlay 的流程： 
 
+1. 文字或者语音：
+ASR（观众语音识别）-》LLM（理解，回复）-》TTS（语音合成，有情绪的回复）
+
+2.数字人：
 OpenAvatarChat 数字人
 
 [用户语音输入] 
