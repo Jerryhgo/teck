@@ -54,3 +54,14 @@ OpenAvatarChat 数字人
 
 • 前端分离与 WebRTC： 底层利用 gradio-webrtc 或 WebSocket 建立高带宽、低延迟的音视频传输通道，确保生成的音视频流无缝同步推送到用户的浏览器或 Electron 桌面端。
 • 双工打断模式 (Duplex Interrupt)： 传统的 AI 必须等它说完你才能说。OpenAvatarChat 优化了音频回声消除与状态管理，实现真人随时可以插话打断数字人，数字人听到后会立刻停止当前发声并转入倾听状态。
+
+
+1.AI role play simulation - Real-time conversations with an AI customer, prospect, or candidate in different business scenarios, eg: product sales pitching, objection handling, customer service or recruitment interviews.
+2.Real time feedback - Provides instant feedback on communication quality, product knowledge, empathy, and compliance adherence. Analyzes tone, confidence, engagement level, and customer sentiment during conversations. Identify improvement areas and provide personalized coaching suggestions.
+3.Performance scoring - Automatically scores users against predefined competency frameworks and evaluation criteria.
+4.Scenario library - rich pre-built scenarios.
+5.Custom scenario builder - Administrators can create specific role-play scenarios, scripts, products, and personas.
+6.Custom personas - Simulate different customer profiles, personalities, emotions, needs and behaviors.
+7.Multilingual support (Mandarin / Cantonese / English).
+8.Learning path - Recommends follow-up courses, videos, or training materials based on performance gaps.
+9.Analytics and reporting - Tracks completion rates, competency trends, training effectiveness.
