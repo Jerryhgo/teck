@@ -7,6 +7,30 @@
 • 缺点：需要自己在本地或服务器用 FFmpeg 提前把视频压缩、转码好；防盗链能力较弱（只能靠简单的 Referer 或 URL 鉴权，懂技术的人依然能下载）。
 • 适用场景：企业官网宣传片、产品演示视频、对版权要求不高的公开课
 
+
+2. 典型工作流程
+
+1. 上传与转码：创作者或后台将原始视频直传至对象存储，触发转码任务生成多清晰度（如 480p/720p/1080p）的 HLS/DASH 分片与索引文件，回写至存储桶。
+2. 获取播放地址：客户端向业务服务请求播放信息，业务服务返回经过 CDN 加速的播放 URL（常带防盗链签名或临时鉴权参数）。
+3. 边缘命中与回源：播放器请求 .m3u8 和分片文件。若 CDN 边缘节点命中缓存直接返回；若未命中（Miss），CDN 回源从对象存储拉取并缓存后返回给用户。
+4. 自适应播放与统计：播放过程中按需拉取后续分片，网络波动时自动切码率；CDN 与播放器上报命中率、卡顿率、流量等指标用于调优。
+
+
+3. 关键设计要点
+
+• 切片格式与首开速度：点播优先考虑 HLS（.m3u8 + .ts 或 fMP4）或 DASH，便于多码率切换和边缘缓存；控制分片时长（常见 2～6 秒），兼顾首屏加载速度与切片数量开销。
+• 防盗链与内容安全：
+	• 开启 CDN Referer 防盗链、URL 鉴权（时间戳 + 签名），防止外链盗刷流量。
+	• 敏感或付费视频可结合 HLS 加密（AES-128） 或 DRM，并严格控制密钥下发权限。
+• 回源与存储优化：
+	• 对象存储桶建议设为私有读，仅允许自家 CDN 通过回源域名或特定机制访问，避免绕过 CDN 直连源站刷流量。
+	• 对冷门或历史视频配置生命周期管理（如转入低频/归档存储），降低长期存储成本；合理设置 CDN 缓存 TTL，减少不必要的回源请求。
+
+Streaming：
+• Encoding and segmentation: Source video is compressed and split into short chunks or packets using protocols like HLS or MPEG-DASH. Most users on Reddit agree on a consensus that HLS works by encoding video into a master .m3u8 playlist and small chunks, which player libraries like hls.js or video.js fetch and play in browsers.
+• CDN delivery: Content Delivery Networks (CDNs) cache video segments on servers closer to viewers to reduce lag and buffering.
+• Adaptive bitrate streaming (ABR): Players automatically switch video resolution and bitrate based on current bandwidth and device performance
+
 VOD:
 https://res-static.hc-cdn.cn/cloudbu-site/intl/zh-cn/%E5%88%A0%E7%89%88%E7%BB%88-%E4%B8%AD%E6%96%87.png
 
@@ -15,3 +39,8 @@ https://res-static.hc-cdn.cn/cloudbu-site/intl/zh-cn/%E5%88%A0%E7%89%88%E7%BB%88
 preview
 chaptering - 但是要提供时间（这个要手动识别或者交给LLM去识别处chapter出来）
 https://videojs.org/docs/guides/installation/react
+
+
+前端-video play （preview，replay，recommendation/etc）
+后端-video processing（转码，上传，chaptering，summary，subtitle，/etc）
+存储&分发 - oss，cdn，防盗链
