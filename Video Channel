@@ -1,0 +1,17 @@
+
+方案一：对象存储（OSS/COS/S3）+ CDN（最推荐的平替）
+
+这是绝大多数中小企业的首选方案，性价比极高。
+• 做法：把本地转码好的视频（通常是 MP4 或 M3U8 格式）直接传到阿里云 OSS、腾讯云 COS 或 AWS S3 等对象存储中，然后套一层 CDN 加速，前端用开源播放器（如 DPlayer、Video.js）直接拉取链接播放。
+• 优点：成本极低（只付存储费和 CDN 流量费，省去了云 VOD 昂贵的转码费和媒体处理费）；架构简单，几乎不需要后端开发。
+• 缺点：需要自己在本地或服务器用 FFmpeg 提前把视频压缩、转码好；防盗链能力较弱（只能靠简单的 Referer 或 URL 鉴权，懂技术的人依然能下载）。
+• 适用场景：企业官网宣传片、产品演示视频、对版权要求不高的公开课
+
+VOD:
+https://res-static.hc-cdn.cn/cloudbu-site/intl/zh-cn/%E5%88%A0%E7%89%88%E7%BB%88-%E4%B8%AD%E6%96%87.png
+
+前端播放器：
+支持了各种功能：
+preview
+chaptering - 但是要提供时间（这个要手动识别或者交给LLM去识别处chapter出来）
+https://videojs.org/docs/guides/installation/react
